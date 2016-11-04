@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/workshopsEvents.css">
+    <link rel="stylesheet" href="stylesheets/main.css">
+
+    <title>Interactive Web Development Student Association</title>
+</head>
+
+<body>
+	
+    <div class="container-fluid">
+    <div class="row" id="top-area">
+            <a href="index.html"><img class="img-responsive center" src="images/IWDSA Logo.png"></a>
+        </div>
+    <nav>
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+            <!--Home, About Us, Events, E-Board-->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>  
+                <li><a href="events.html">Events</a></li>
+                <li class="active"><a href="workshops.html">Workshops</a></li>
+                <li><a href="eBoard.html">E-Board</a></li>
+            </ul>
+        </div>
+    </nav>
+    </div>
+
+    <div id="content"></div>
+
+
+    <script src="javascripts/ejs.min.js"></script>
+
+    <script id="workshopTemplate" type="text/template">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-9 col-xs-12workshops">
+
+            <%# Add each workshop %>
+            <% workshops.forEach(function(workshop) { %>
+
+              <h3 class="title" id='<%= workshop.title.replace(/ /g, '') %><%= workshop.date.split(' ')[0] %>'>
+                <%= workshop.title %>
+              </h3>
+              <p class="date"><%= workshop.date %></p>
+
+              <p class="description"><%= workshop.description %></p>
+
+              <h4 class="linksTitle">Links:</h4>
+              <%# Display all links %>
+              <% workshop.links.forEach(function(link) { %>
+                <div class="linkGroup">
+                  <span class="linkName"><%= link.name %>:</span>
+                  <a class="linkUrl" target="_blank" href="<%= link.url %>"><%= link.url %></a>
+                </div>
+              <% }); %>
+
+              <h4 class="filesTitle">Files:</h4>
+              <a class="downloadAllBtn fileFormat" href="/dl?title=<%= workshop.title %>&date=<%= workshop.date %>">
+                Download All
+              </a>
+              <%# Display all files %>
+              <% workshop.files.forEach(function(file) { %>
+                <a class="file fileFormat" href="/dl?title=<%= workshop.title %>&date=<%= workshop.date %>&file=<%= file %>">
+                  <%= file %>
+                </a>
+              <% }); %>
+
+            <% }); %>
+          </div>
+          <div class="col-md-3 workshopNavCont">
+            <h3 class="workshopNavTitle">All Workshops</h3>
+            <ul class="workshopNavGroup">
+              <%# Populate workshop navigation %>
+              <% workshops.forEach(function(workshop) { %>
+
+                <!-- Link to workshop anchor -->
+                <a class="workshopNavLink"
+                  href="#<%= workshop.title.replace(/ /g, '') %><%= workshop.date.split(' ')[0] %>">
+                  <li class="workshopNavItem">
+                    <span class="workshopNavItemDate"><%= workshop.date.substring(0, 5) %>: </span>
+                    <span class="workshopNavItemTitle"><%= workshop.title %></span>
+                  </li>
+                </a>
+
+              <% }); %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script src="javascripts/workshopData.js"></script> <!-- workshops variable -->
+    <script>
+      var workshopTemplate = document.getElementById('workshopTemplate').innerHTML;
+      var html = ejs.render(workshopTemplate, {workshops: workshops});
+
+      document.getElementById('content').innerHTML = html;
+    </script>
+<footer>
+		<div class="footer">
+            <ul>
+                <li><i>&copy;2016 IWDSA</i></li>
+                <li><a href="http://www.cpp.edu/"><i>Cal Poly Pomona</i></a></li>
+                <li><a href="https://www.cpp.edu/~cba/computer-information-systems/"><i>Computer Information Systems Department</i></a></li>
+            </ul>
+		</div>
+    </footer>
+</body>
+
+</html>

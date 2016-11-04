@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/main.css">
+	<link rel="stylesheet" href="stylesheets/workshopsEvents.css">
+    <title>IWDSA</title>
+</head>
+   
+    <body>
+		<div class="container-fluid">
+    <div class="row" id="top-area">
+            <a href="index.html"><img class="img-responsive center" src="images/IWDSA Logo.png"></a>
+        </div>
+    <nav>
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+            <!--Home, About Us, Events, E-Board-->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>  
+                <li><a href="events.html">Events</a></li>
+                <li class="active"><a href="workshops.html">Workshops</a></li>
+                <li><a href="eBoard.html">E-Board</a></li>
+            </ul>
+        </div>
+    </nav>
+    </div>
+	
+     <div id="content"></div>
+
+    <!-- Import templating language -->
+    <script src="javascripts/ejs.min.js"></script>
+
+    <!-- Event template to fill html with data -->
+    <script id="eventTemplate" type="text/template">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- Navbar -->
+          <div class="col-md-3 navCont">
+            <h3 class="navTitle">All Events</h3>
+            <ul class="navGroup">
+              <%# Populate event navigation %>
+              <% events.forEach(function(event) { %>
+
+                <!-- Link to event anchor -->
+                <a class="navLink"
+                  href="#<%= event.title.replace(/ /g, '') %><%= event.date.split(' ')[0] %>">
+                  <li class="navItem">
+                    <span class="navItemDate"><%= event.date.substring(0, 5) %>: </span>
+                    <span class="navItemTitle"><%= event.title %></span>
+                  </li>
+                </a>
+
+              <% }); %>
+            </ul>
+          </div>
+
+          <!-- Event content -->
+          <div class="col-md-9 workshops">
+
+            <%# Add each event %>
+            <% events.forEach(function(event) { %>
+
+              <h3 class="title" id='<%= event.title.replace(/ /g, '') %><%= event.date.split(' ')[0] %>'>
+                <%= event.title %>
+              </h3>
+              <p class="date"><%= event.date %></p>
+
+              <p class="description"><%= event.description %></p>
+
+              <h4 class="linksTitle">Links:</h4>
+              <%# Display all links %>
+              <% event.links.forEach(function(link) { %>
+                <div class="linkGroup">
+                  <span class="linkName"><%= link.name %>:</span>
+                  <a class="linkUrl" target="_blank" href="<%= link.url %>"><%= link.url %></a>
+                </div>
+              <% }); %>
+
+            <% }); %>
+          </div>
+
+
+        </div>
+      </div>
+    </script>
+
+    <script src="javascripts/eventData.js"></script> <!-- events variable -->
+    <script>
+      var eventTemplate = document.getElementById('eventTemplate').innerHTML;
+      var html = ejs.render(eventTemplate, {events: events});
+
+      document.getElementById('content').innerHTML = html;
+    </script>
+        
+        <footer>
+		<div class="footer">
+            <ul>
+                <li><i>&copy;2016 IWDSA</i></li>
+                <li><a href="http://www.cpp.edu/"><i>Cal Poly Pomona</i></a></li>
+                <li><a href="https://www.cpp.edu/~cba/computer-information-systems/"><i>Computer Information Systems Department</i></a></li>
+            </ul>
+		</div>
+    </footer>
+    </body>
+</html>

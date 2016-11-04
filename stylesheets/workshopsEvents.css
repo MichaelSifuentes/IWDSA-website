@@ -1,0 +1,126 @@
+
+/* Content div */
+#content {
+    padding: 0 5% 0 5%;
+}
+@media (max-width: 992px) {
+    #content {
+        padding: 0;
+    }
+}
+
+
+/* Workshop column */
+.workshops {
+    font-size: 1.1em;
+}
+
+
+/* Workshop data */
+.date {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.description {
+    color: white;
+}
+
+.linkGroup {
+    display: block;
+    margin: 5px 0 5px 0;
+}
+.linkName {
+    color: white;
+    margin-right: 5px;
+}
+
+.fileFormat {
+    height: 40px;
+    width: 110px;
+    display: inline-block;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 37px;
+}
+.downloadAllBtn {
+    border: 2px solid #64FE2E;
+    border-radius: 6px;
+    color: white;
+    -webkit-transition: background-color 500ms, color 500ms;
+    transition: background-color 500ms, color 500ms;
+}
+.downloadAllBtn:hover {
+    background-color: #64FE2E;
+    color: #272822;
+    text-decoration: none;
+}
+
+.file {
+    border: 2px solid #272822;
+    border-radius: 6px;
+    color: #337ab7;
+    overflow: hidden;
+    vertical-align: bottom;
+    -webkit-transition: border 500ms, color 500ms;
+    transition: border 500ms, color 500ms;
+}
+
+.file:hover {
+    border: 2px solid #64FE2E;
+    text-decoration: none;
+    color: #337ab7;
+}
+
+
+/* All workshops navigation */
+.navCont {
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .navCont {
+        float: right;
+    }
+}
+
+.navGroup {
+    list-style: none;
+    text-align: left;
+    font-size: 1.2em;
+    padding: 0;
+}
+
+.navLink:hover {
+    text-decoration: none;
+}
+
+.navItem {
+    border-left: 1px solid #272822;
+    padding-left: 5px;
+}
+.navItem:hover {
+    border-left: 1px solid #64FE2E;
+}
+
+.navItemDate {
+    color: white;
+}
+
+.navItemTitle {
+    color: #64FE2E;
+}
+
+
+/* Globals */
+h3, h4 {
+    color: #64FE2E;
+}
+
+h4 {
+    margin-top: 25px;
+}
+
+.title:not(:first-child) {
+    margin-top: 50px;
+}

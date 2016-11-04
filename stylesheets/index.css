@@ -1,0 +1,35 @@
+/*changes body to preferred font and color*/
+.navbar.navbar-default {
+    border-radius: 0px;
+}
+
+.left {
+    margin-right: auto;
+}
+
+.carouselImg {
+    width: auto;
+    height: 500px;
+    max-height: 500px;
+}
+
+.caption{
+	text-shadow: 2px 2px black;
+}
+
+.twitter-timeline{
+	box-shadow: 10px 10px 5px #000000;
+}
+
+.info{
+	background-color: #F8F8F8;
+	color: black;
+}
+
+.solid-border{
+	border: solid;
+	border-color: #F8F8F8;
+	border-radius: 20%;
+	box-shadow: 10px 10px 5px #000000;
+}
+       
